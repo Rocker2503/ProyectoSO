@@ -5,11 +5,14 @@
 public class Sector 
 {
     private int tamano;
+    private Archivo archivo;
     private FCB fcb;
 
-    public Sector(int tamano, FCB fcb) {
-        this.tamano = tamano;
+    public Sector() {
+        this.tamano = 512;
         this.fcb = fcb;
+        this.archivo = null;
+        this.fcb = null;
     }
 
     public int getTamano() {
@@ -27,5 +30,15 @@ public class Sector
     public void setFcb(FCB fcb) {
         this.fcb = fcb;
     }
+
+    public Archivo getArchivo() {
+        return archivo;
+    }
+
+    public void setArchivo(Archivo archivo) {
+        this.archivo = archivo;
+    }
+    
+    
     
 }
