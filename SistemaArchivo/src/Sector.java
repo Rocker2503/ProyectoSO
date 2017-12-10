@@ -8,9 +8,9 @@ public class Sector
     private Archivo archivo;
     private FCB fcb;
 
+
     public Sector() {
         this.tamano = 512;
-        this.fcb = fcb;
         this.archivo = null;
         this.fcb = null;
     }
@@ -22,15 +22,7 @@ public class Sector
     public void setTamano(int tamano) {
         this.tamano = tamano;
     }
-
-    public FCB getFcb() {
-        return fcb;
-    }
-
-    public void setFcb(FCB fcb) {
-        this.fcb = fcb;
-    }
-
+    
     public Archivo getArchivo() {
         return archivo;
     }
@@ -39,6 +31,12 @@ public class Sector
         this.archivo = archivo;
     }
     
-    
+    public FCB getFcb() {
+        return fcb;
+    }
+
+    public void setFcb(FCB fcb) {
+        this.fcb = fcb;
+    }
     
 }

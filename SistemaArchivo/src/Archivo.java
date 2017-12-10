@@ -4,18 +4,18 @@
  */
 public class Archivo 
 {
-    private int tamano;
+    private double tamano;
     private String nombre;
     private String contenido;
     
-    public Archivo(int tamano, String nombre, String contenido)
+    public Archivo(double tamano, String nombre, String contenido)
     {
         this.tamano = tamano;
         this.nombre = nombre;
         this.contenido = contenido;
     }
 
-    public int getTamano() {
+    public double getTamano() {
         return tamano;
     }
 
