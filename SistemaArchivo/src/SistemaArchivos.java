@@ -109,6 +109,82 @@ public class SistemaArchivos
                 disco.setOcupados(ocupados);
                 disco.setSectores(sectores);
             }
+            else if(comando.equals("Remove"))
+            {
+                String nombre = sc.nextLine();
+                int tamanoMem = mem.getTamano();
+                Sector[] arreglo = mem.getSectores();
+                Sector s; 
+                
+                for (int i = 0; i < tamanoMem; i++) 
+                {
+                    //esto hay que pasarlo a un metodo
+                    if(arreglo[i] != null)
+                    {
+                        s = arreglo[i];
+                        FCB fcb = s.getFcb();
+                        Archivo archi = fcb.getArchivo();
+                        if(nombre.equals(archi.getNombre()))
+                        {
+                            int direccionFat = fcb.getIndice();
+                            SectorFAT[] sectores = fat.getBloques();
+                            boolean[] ocupados = fat.getOcupados();
+                            
+                            for (int j = direccionFat; j < sectores.length; j++) 
+                            {
+                                sectores[i].setIndiceDisco(0);
+                                ocupados[i] = false;
+                                if(sectores[i].getPunteroBloqueFat() == -1)
+                                {
+                                    break;
+                                }
+                                else if(sectores[i].getPunteroBloqueFat() != -1)
+                                {
+                                    sectores[i].setPunteroBloqueFat(-1);
+                                }
+                                
+                            }
+                        }
+                        
+                    }    
+                }
+                
+                arreglo = disco.getSectores();
+                for (int i = 0; i < disco.getTamano(); i++) 
+                {
+                    //esto es el mismo metodo de arriba
+                    if(arreglo[i] != null)
+                    {
+                        s = arreglo[i];
+                        FCB fcb = s.getFcb();
+                        if(fcb != null)
+                        {
+                            Archivo archi = fcb.getArchivo();
+                            if(nombre.equals(archi.getNombre()))
+                            {
+                                int direccionFat = fcb.getIndice();
+                                SectorFAT[] sectores = fat.getBloques();
+                                boolean[] ocupados = fat.getOcupados();
+                            
+                                for (int j = direccionFat; j < sectores.length; j++) 
+                                {
+                                    sectores[i].setIndiceDisco(0);
+                                    ocupados[i] = false;
+                                    if(sectores[i].getPunteroBloqueFat() == -1)
+                                    {
+                                        break;
+                                    }
+                                    else if(sectores[i].getPunteroBloqueFat() != -1)
+                                    {
+                                        sectores[i].setPunteroBloqueFat(-1);
+                                    }
+                                
+                                }
+                            }
+                        }
+                    }
+                }
+            }
                 
         }
     }
