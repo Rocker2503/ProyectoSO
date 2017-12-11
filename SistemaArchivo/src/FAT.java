@@ -10,12 +10,17 @@ public class FAT
     public FAT() 
     {
 
-        this.ocupados = new boolean[512];
-        
+        this.ocupados = new boolean[512];        
         for (int i = 0; i < 512; i++) 
         {
             this.ocupados[i] = false;
         }
+        
+        this.bloques = new SectorFAT[512];
+        /*for (int i = 0; i < 512; i++) {
+            SectorFAT bloque = bloques[i];
+            
+        }*/
         
     }
 
